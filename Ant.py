@@ -134,46 +134,6 @@ def partrenew(ant,degree):
     if(len(ant)==8):
         degree[ant[8-1]-1][ant[0]-1]=((1-0.95)*degree[ant[len(ant)-1]-1][ant[0]-1])+(0.95*0.0001)
     return
-def alldegree(mint,Q):
-    L=length(mint) #總長度
-    v1=mint[len(mint)-1]-1
-    v2=mint[0]-1
-    degree[v1][v2]+=Q/L
-    #print(degree)
-    ll=[]
-    for i in range(len(mint)):
-        if(i==0):
-            continue
-        else:
-            v1=mint[i-1]-1
-            v2=mint[i]-1
-            degree[v1][v2]=(1-0.95)*degree[v1][v2]+0.95*(Q/L)
-    #print(degree)
-    return
-def optstep2initial(l,t):
-    a=list(itertools.combinations(t,2))
-    minl=length(t)
-    mint=copy.deepcopy(t)
-    tmax=0
-    for i in a:
-        if(i[0]==start or i[1]==start):
-           continue
-        elif(tmax==10):
-            break
-        else:
-            tarray=copy.deepcopy(t)
-            a0=tarray.index(i[0])
-            a1=tarray.index(i[1])
-            temp=tarray[a0]
-            tarray[a0]=tarray[a1]
-            tarray[a1]=temp
-            #print(tarray)
-            templ=length(tarray) #計算長度
-            tmax+=1
-            if(templ<minl):
-                minl=templ
-                mint=tarray
-    return minl,mint
 def optstep1(ant,minl,mint):
     l=0 #長度
     t=[] #路徑
@@ -234,30 +194,16 @@ def optstep3(mint): #加強最佳路徑的濃度
             v2=mint[i+1]-1
             degree[v1][v2]+=(1-0.95)*degree[v1][v2]+0.95*(100/L)
     return
-def optstepinitial(ant):
-    l=0 #長度
-    t=[] #路徑
-    minl=0
-    mint=[]
-    for i in ant:
-        l=length(i)
-        t=i
-        minl,mint=optstep2initial(l,t)
-    return minl,mint
 minl=0
 mint=[]
 deb=0
-start=8 #可根據起始點決定
-
+start=1 #可根據起始點決定
 for i in range(50):
         ant=[[start],[start],[start],[start],[start]]
         #ant=selectant(5)
         ant=selectnode(ant,set,ad,bd,degree)
-        #for i in ant:
-         #   print(i)
-        #    print
         mint=optstep1(ant,minl,mint)
-        optstep3(mint)
+        optstep3(mint) #將區域後找到的最好解增加濃度。
 
 print("最低路徑")
 print(mint)
