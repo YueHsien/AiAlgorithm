@@ -247,7 +247,7 @@ def optstepinitial(ant):
 minl=0
 mint=[]
 deb=0
-start=8 #s
+start=8 #可根據起始點決定
 
 for i in range(50):
         ant=[[start],[start],[start],[start],[start]]
