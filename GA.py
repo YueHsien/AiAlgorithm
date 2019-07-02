@@ -8,6 +8,7 @@ tsp=[
      [278.3,363.3,176.1,368.3,243.0,202.2,0,320.0],
      [54.4,88.4,153.8,63.6,185.9,122.8,320.0,0]
      ]
+
 import random 
 import itertools
 import numpy as np
@@ -19,9 +20,9 @@ first=[]   #第一個最好的染色體
 second=[]   #次要最好的染色體
 def length(k):
     global distance
-    distance=tsp[k[7]-1][k[0]-1]
-    for i in range(0,8):
-        if(i==7):
+    distance=tsp[k[len(k)-1]-1][k[0]-1]
+    for i in range(len(tsp[0])):
+        if(i==len(tsp)-1):
             break
         else:
             distance+=tsp[k[i]-1][k[i+1]-1]
@@ -30,12 +31,18 @@ def length(k):
 def select5n(k):
     i=0
     for x in nums2: #挑五個
-        if(i==200):
+        if(i==100):
             break;
         else:
             n.append([])
-            randselect=random.randint(0,40000)
+            randselect=random.randint(0,5040)
+            aa=nums2[randselect]
+            print(aa)
             n[i].append(nums2[randselect])
+            if(aa==(1,2,4,8,5,7,3,6)):
+                print("抓到了")
+            if(aa==(1,6,3,7,5,8,4,2)):
+                print("抓到了")
             i+=1
 def calfitness(k):
     fitmax=0
@@ -67,7 +74,7 @@ def select2(n,first,second,firstmax,secondmax):
             second=j[0]
     return first,second
 def crossover(k,first,second):
-    point=random.randint(0,6)
+    point=random.randint(0,4)
     child1=[ first[i] for i in range(0,point+1)] #124853769
     child2=[ second[i] for i in range(0,point+1)] #17365824
     for i in second: #子代1
@@ -79,7 +86,7 @@ def crossover(k,first,second):
     return child1,child2
 
 def mutation(child1,child2):
-    rate=0.1 #突變機率
+    rate=0.3 #突變機率
     hit=random.random()
     if(hit<rate): #進行突變
        select=random.randint(0,1)
@@ -143,22 +150,14 @@ def routewheel(k):
     for x in range(0,2): 
         diceball=random.random()
         for i,j in enumerate(fitemp):
-            if(diceball<fitemp[0]):
+            if(diceball<fitemp[i]):
                 ss=fitemp2[i]*fitsum
                 ss="%.1f" % ss
                 ss=float(ss)
                 index.append(ss)
                 break;
             elif(i==0):
-                continue
-            elif(diceball>fitemp[i-1] and diceball<fitemp[i]):
-                ss=fitemp2[i]*fitsum
-                ss="%.1f" % ss
-                ss=float(ss)
-                index.append(ss)
-                break;
-    if(not index[0] or not index[1]):
-        print("debug")
+                continue      
     for i,j in enumerate(k):
         if(index[0]==k[i][2]):
             select1=k[i][0]
@@ -170,12 +169,14 @@ def routewheel(k):
     return select1,select2
 
 select5n(n) ##挑5個解作為族群大小
+#n=[[(1,8,4,2,5,6,3,7)], [(1,2,4,8,5,7,3,6)], [(1,8,5,3,6,2,4,7)], [(1,4,2,8,5,3,6,7)], [(1,7,3,6,5,8,2,4)]]
 for k in  n:
     k.append([])
     k.append([])
 
 #進交配池的最好經過輪盤
-for generation in range(0,400):
+sss=0
+for generation in range(0,1000):
     for k in n:
         distance=0
         length(k[0])
@@ -195,9 +196,12 @@ for generation in range(0,400):
     child1,child2=crossover(n,first,second) #子代
     mutation(child1,child2)
     replace(n,child1,child2) #將2子代取代適合度最差的兩個染色體
+    sss+=1
 
 print("最佳解=")
 print(n[0])
+print()
+print(sss)
 
 
 
