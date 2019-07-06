@@ -35,7 +35,7 @@ public class ex4 {
 				time++;
 			}
 			timerun++;
-			iteration+=20;
+			//iteration+=20;
 			System.out.println("最好結果");
 			System.out.println(Arrays.toString(best));
 			System.out.print(iteration+" ");
@@ -74,4 +74,5 @@ public class ex4 {
 		}
 		return v;
 	}
+
 }

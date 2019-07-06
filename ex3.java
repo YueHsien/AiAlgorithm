@@ -10,7 +10,6 @@ import java.io.IOException;
 public class ex3 {
 	static Random rand = new Random();
 	static int ratel = 3; // ∏ı≈D≥t≤v
-
 	public static void main(String[] args) {
 		String record="";
 		// TODO Auto-generated method stub
