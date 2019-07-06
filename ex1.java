@@ -1,46 +1,50 @@
+package aialgorithm;
 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class first {
+public class ex1 {
 	static int n = 5;
 	static Random rand = new Random();
-	static String bit[][] = select(n);// å…ˆéš¨æ©ŸæŒ‘é¸æŸ“è‰²é«”
+	static String bit[][] = select(n);// ¥ıÀH¾÷¬D¿ï¬V¦âÅé
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scn = new Scanner(System.in);
-		System.out.println("åˆå§‹éš¨æ©Ÿç¾¤é«”");
+		System.out.println("ªì©lÀH¾÷¸sÅé");
 		for(int i=0;i<n;i++){
 			System.out.println(Arrays.toString(bit[i]));
 		}
-		System.out.println("åˆå§‹è§£=");
+		System.out.println("ªì©l¸Ñ=");
 		System.out.println(Arrays.toString(calfitness(n)));
-		System.out.println("è¨ˆç®—æµç¨‹");
-		for(int i=0;i<2000;i++){
-			/*System.out.println("ç¬¬"+i+"ä»£");
+		System.out.println("­pºâ¬yµ{");
+		for(int i=0;i<500;i++){
+			/*System.out.println("²Ä"+i+"¥N");
 			for(int j=0;j<n;j++){
 				System.out.println(Arrays.toString(bit[j]));
 			}*/
-			int index[] = calfitness(n); // è¨ˆç®—é©åˆåº¦
+			int index[] = calfitness(n); // ­pºâ¾A¦X«×
+			System.out.println("¾A¦X«×"+Arrays.toString(index));
 			int first = findmax(index);
 			int second = findsecmax(n, first, index);
-			int point = rand.nextInt(100);
-			String[] child1 = crossover1(first, second, point);// å…ˆç®—å­ä»£1
-			String[] child2 = crossover2(first, second, point);// å…ˆç®—å­ä»£1
-			//System.out.println(Arrays.toString(child1));
-			//System.out.println(Arrays.toString(bit[j]));
+			int point = 2;
+			String[] child1 = crossover1(first, second, point);// ¥ıºâ¤l¥N1
+			String[] child2 = crossover2(first, second, point);// ¥ıºâ¤l¥N1
+			System.out.println("¤l¥N1"+Arrays.toString(child1));
+			System.out.println("¤l¥N2"+Arrays.toString(child2));
 			mutation(child1, child2);
 			replace(index,child1,child2);
+			System.out.println();
 		}
-		System.out.println("ç¶“éåŸºå› æ¼”ç®—æ³•å¾Œçš„è§£");
+		System.out.println("¸g¹L°ò¦]ºtºâªk«áªº¸Ñ");
 		for(int i=0;i<n;i++){
-			System.out.println(Arrays.toString(bit[i]));
+			System.out.println(Arrays.toString(bit[0]));
 		}
-		System.out.println("æœ€ä½³è§£="+Arrays.toString(calfitness(n)));
+		int finac[]=calfitness(n);
+		System.out.println("³Ì¨Î¸Ñ="+Arrays.toString(calfitness(n)));
 	}
 
-	public static int findmax(int index[]) { // å›å‚³æœ€å¤§å€¼index
+	public static int findmax(int index[]) { // ¦^¶Ç³Ì¤j­Èindex
 		int max = index[0];
 		int index2 = 0;
 		for (int i = 0; i < n; i++) {
@@ -52,7 +56,7 @@ public class first {
 		return index2;
 	}
 
-	public static int findsecmax(int n, int first, int indexforsec[]) { // å…ˆé™¤æ‰æœ€å¤§å…ƒç´ 
+	public static int findsecmax(int n, int first, int indexforsec[]) { // ¥ı°£±¼³Ì¤j¤¸¯À
 		int temp[] = Arrays.copyOf(indexforsec, indexforsec.length);
 		temp[first] = temp[temp.length - 1];
 		temp = Arrays.copyOf(temp, temp.length - 1);
@@ -71,23 +75,15 @@ public class first {
 		String[][] bit = new String[n][100];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < 100; j++) {
-				int temp = rand.nextInt(2); // é€™æ¨£æ˜¯0-1
-				if(temp==1){
+				int temp = rand.nextInt(2); // ³o¼Ë¬O0-1
 					float hit = rand.nextFloat();
-					if(hit>0.9){
-						bit[i][j]=Integer.toString(temp);
-					}else{
-						bit[i][j]=Integer.toString(0);
-					}
-				}else{
-					bit[i][j] = Integer.toString(temp);
-				}
+					bit[i][j]=Integer.toString(temp);
 			}
 		}
 		return bit;
 	}
 
-	public static int[] calfitness(int n) { // è¨ˆç®—æœ‰å¤šå°‘å€‹1
+	public static int[] calfitness(int n) { // ­pºâ¦³¦h¤Ö­Ó1
 		int index[] = new int[n];
 		for (int i = 0; i < n; i++) {
 			int one = 0;
@@ -101,7 +97,7 @@ public class first {
 		return index;
 	}
 
-	public static String[] crossover1(int first, int second, int point) { // å…ˆäº¤é…ä¸€å€‹å­ä»£
+	public static String[] crossover1(int first, int second, int point) { // ¥ı¥æ°t¤@­Ó¤l¥N
 		String parentf[] = Arrays.copyOf(bit[first], bit[first].length);
 		String parents[] = Arrays.copyOf(bit[second], bit[second].length);
 		for (int i = 0; i < point; i++) {
@@ -110,7 +106,7 @@ public class first {
 		return parentf;
 	}
 
-	public static String[] crossover2(int first, int second, int point) { // å…ˆäº¤é…ä¸€å€‹å­ä»£
+	public static String[] crossover2(int first, int second, int point) { // ¥ı¥æ°t¤@­Ó¤l¥N
 		String parentf[] = Arrays.copyOf(bit[first], bit[first].length);
 		String parents[] = Arrays.copyOf(bit[second], bit[second].length);
 		for (int i = 0; i < point; i++) {
@@ -120,7 +116,7 @@ public class first {
 	}
 
 	public static void mutation(String child1[], String child2[]) {
-		float rate = 0.3f; // çªè®Šç‡
+		float rate =0.1f;// ¬ğÅÜ²v
 		float hit = rand.nextFloat();
 		if (hit < rate) {
 			int point = rand.nextInt(100);
@@ -141,7 +137,7 @@ public class first {
 		}
 	}
 
-	public static void replace(int index[],String child1[],String child2[]) { // å°‡å…©å­ä»£å–ä»£æ¯é«”ä¸­æœ€å·®çš„å…©å€‹
+	public static void replace(int index[],String child1[],String child2[]) { // ±N¨â¤l¥N¨ú¥N¥ÀÅé¤¤³Ì®tªº¨â­Ó
 		int fmin1 = index[0];
 		int fmin2 = index[1];
 		int fmin1index=0;
@@ -160,13 +156,13 @@ public class first {
 		}
 		bit[fmin1index]=child1;
 		bit[fmin2index]=child2;
-		/*System.out.println("å­ä»£");
+		/*System.out.println("¤l¥N");
 		System.out.println(Arrays.toString(child1));
 		System.out.println(Arrays.toString(child2));
-		System.out.println("çˆ¶ä»£");
+		System.out.println("¤÷¥N");
 		System.out.println(Arrays.toString(bit[fmin1index]));
 		System.out.println(Arrays.toString(bit[fmin2index]));
-		System.out.println("æ›¿æ›å¾Œ");
+		System.out.println("´À´««á");
 		System.out.println(Arrays.toString(bit[fmin1index]));
 		System.out.println(Arrays.toString(bit[fmin2index]));*/
 	}
