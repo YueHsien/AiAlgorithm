@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 		if(v[point]=='0'){
 			v[point]='1';
 		}
-		else if(v[point]='1'){
+		else if(v[point]=='1'){
 			v[point]='0';
 		}
 		int f2=0;
