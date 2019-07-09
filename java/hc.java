@@ -1,6 +1,4 @@
-package aialgorithm;
-
-import java.util.Random;
+﻿import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 
