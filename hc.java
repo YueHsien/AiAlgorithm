@@ -4,9 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class ex4 {
+public class hc {
 	static Random rand = new Random();
-	static int ratel = 3; // ¸õÅD³t²v
+	static int ratel = 3; // è·³èºé€Ÿç‡
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,7 +22,7 @@ public class ex4 {
 			int f1 = calfitness(len, bit);
 			int initial = f1;
 			String[] best = new String[len];
-			System.out.println("¦¹¦¸°õ¦æªºÀH¾÷­ÓÅé" + "¦³" + f1 + "­Ó1");
+			System.out.println("æ­¤æ¬¡åŸ·è¡Œçš„éš¨æ©Ÿå€‹é«”" + "æœ‰" + f1 + "å€‹1");
 			System.out.println(Arrays.toString(bit));
 			while (time < iteration) {
 				v = neibor(len, bit);
@@ -36,7 +36,7 @@ public class ex4 {
 			}
 			timerun++;
 			//iteration+=20;
-			System.out.println("³Ì¦nµ²ªG");
+			System.out.println("æœ€å¥½çµæœ");
 			System.out.println(Arrays.toString(best));
 			System.out.print(iteration+" ");
 			System.out.print(f1);
@@ -47,13 +47,13 @@ public class ex4 {
 	public static String[] select(int n) {
 		String[] bit = new String[n];
 		for (int i = 0; i < n; i++) {
-			int temp = rand.nextInt(2); // ³o¼Ë¬O0-1
+			int temp = rand.nextInt(2); // é€™æ¨£æ˜¯0-1
 			bit[i] = Integer.toString(temp);
 		}
 		return bit;
 	}
 
-	public static int calfitness(int len, String bit[]) { // ­pºâ¦³¦h¤Ö­Ó1
+	public static int calfitness(int len, String bit[]) { // è¨ˆç®—æœ‰å¤šå°‘å€‹1
 		int one = 0;
 		for (int i = 0; i < len; i++) {
 			if (bit[i].equals("1")) {
