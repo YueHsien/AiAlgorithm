@@ -7,9 +7,9 @@ import java.util.Date;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ex3 {
+public class es {
 	static Random rand = new Random();
-	static int ratel = 3; // ¸õÅD³t²v
+	static int ratel = 3; // è·³èºé€Ÿç‡
 	public static void main(String[] args) {
 		String record="";
 		// TODO Auto-generated method stub
@@ -35,8 +35,8 @@ public class ex3 {
 				System.out.println(i);
 				System.out.println(best);
 				System.out.println(f1);
-				record+="¦b®É¶¡"+strDate2;
-				record+="¤w¸g¶]¨ì²Ä"+i+"¼Æ¨Ã¥B¤w¸g­pºâ¥X"+f1+"­Ó1\n";
+				record+="åœ¨æ™‚é–“"+strDate2;
+				record+="å·²ç¶“è·‘åˆ°ç¬¬"+i+"æ•¸ä¸¦ä¸”å·²ç¶“è¨ˆç®—å‡º"+f1+"å€‹1\n";
 				try {
 					FileWriter fw = new FileWriter("record.txt");
 					fw.write(record);
@@ -51,7 +51,7 @@ public class ex3 {
 		}
 	}
 
-	public static int calfitness(String temp) { // ­pºâ¦³¦h¤Ö­Ó1
+	public static int calfitness(String temp) { // è¨ˆç®—æœ‰å¤šå°‘å€‹1
 		int number = 0;
 		for (int i = 0; i < temp.length(); i++) {
 			char s = temp.charAt(i);
