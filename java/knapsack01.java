@@ -1,4 +1,3 @@
-package aialgorithm;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,18 +16,18 @@ public class knapsack01 {
 	knapsack01(int array[]){
 		this.array=array;
 	}
-	static int n=2;	//§ó§ï¸Ó¦æ§ïÅÜÀÉ®×
+	static int n=2;	//æ›´æ”¹è©²è¡Œæ”¹è®Šæª”æ¡ˆ
 	static knapsack01 weights=new knapsack01(handletxt(n,'w'));
 	static knapsack01 profits=new knapsack01(handletxt(n,'p'));
 	static knapsack01 optselect=new knapsack01(handletxt(n,'s'));
 	static knapsack01 capacity=new knapsack01(findcapacity(n,'c'));
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
-		// ­I¥]°İÃD©w¸q:¦b¦³­­ªº­«¶q¤º¡A®³¥X»ù­È³Ì°ªªºªF¦è¡C
+		// èƒŒåŒ…å•é¡Œå®šç¾©:åœ¨æœ‰é™çš„é‡é‡å…§ï¼Œæ‹¿å‡ºåƒ¹å€¼æœ€é«˜çš„æ±è¥¿ã€‚
 		Scanner scn = new Scanner(System.in);
-		System.out.println("run¦¸¼Æ");
+		System.out.println("runæ¬¡æ•¸");
 		int run = scn.nextInt();
-		System.out.println("­¡¥N¦¸¼Æ");
+		System.out.println("è¿­ä»£æ¬¡æ•¸");
 		int iteration = scn.nextInt();
 		int timerun = 0;
 		while (timerun < run) {
@@ -36,7 +35,7 @@ public class knapsack01 {
 			int s[] = Initialization(weights.array.length, weights.array, capacity.f1); //I
 			knapsack01 f1=new knapsack01(Evaluation(s,profits.array)); //E
 			int time = 0;
-			System.out.println("ªì©lµ²ªG");
+			System.out.println("åˆå§‹çµæœ");
 			System.out.println(Arrays.toString(s));
 			while (time < iteration) {
 				int v[] = Transition(s); //T
@@ -44,13 +43,13 @@ public class knapsack01 {
 				s=Determination(s,v,f1,f2);//D
 				time++;
 			}
-			System.out.println("¸Ó¦¸³Ì¦nµ²ªG");
+			System.out.println("è©²æ¬¡æœ€å¥½çµæœ");
 			System.out.println(Arrays.toString(s));
-			System.out.println("¸Ó¦¸³Ì¦n»ù­È");
+			System.out.println("è©²æ¬¡æœ€å¥½åƒ¹å€¼");
 			System.out.println(f1.f1);
-			System.out.println("¹ê»Ú³Ì¦nµ²ªG");
+			System.out.println("å¯¦éš›æœ€å¥½çµæœ");
 			System.out.println(Arrays.toString(optselect.array));
-			System.out.println("¹ê»Ú³Ì¦n»ù­È");
+			System.out.println("å¯¦éš›æœ€å¥½åƒ¹å€¼");
 			System.out.println(Evaluation(optselect.array,profits.array));
 			System.out.println();
 			timerun++;
@@ -69,7 +68,7 @@ public class knapsack01 {
 		}
 		return s;
 	}
-	public static int findcapacity(int fileindex,char cpsw){ // ­pºâ¦³¦h¤Ö»ù­È
+	public static int findcapacity(int fileindex,char cpsw){ // è¨ˆç®—æœ‰å¤šå°‘åƒ¹å€¼
 		String filename="knapsackdatasets/";
 		filename+="p0"+fileindex+"_"+cpsw+".txt";
 		FileReader fr = null;
@@ -104,7 +103,7 @@ public class knapsack01 {
 		while (true) {
 			int weight = 0;
 			for (int i = 0; i < n; i++) {
-				int temp = rand.nextInt(2); // ³o¼Ë¬O0-1
+				int temp = rand.nextInt(2); // é€™æ¨£æ˜¯0-1
 				s[i] = temp;
 				if (s[i] == 1) {
 					weight += weights[i];
@@ -117,7 +116,7 @@ public class knapsack01 {
 		return s;
 	}
 
-	public static int Evaluation(int[] s,int[] profits) { // ­pºâ¦³¦h¤Ö»ù­È
+	public static int Evaluation(int[] s,int[] profits) { // è¨ˆç®—æœ‰å¤šå°‘åƒ¹å€¼
 		int f = 0;
 		for (int i = 0; i < s.length; i++) {
 			if (s[i] == 1) {
