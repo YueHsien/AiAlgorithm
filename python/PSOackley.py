@@ -11,7 +11,6 @@ vmax=4
 weight=0.9
 globalmax=0
 globalposition=[]
-dimension=2 #維度
 def select(number,Ld,Ud,vmax,vmin):
     i=0
     temp=[]
@@ -36,9 +35,16 @@ def setspeed(vmax,vmin):
     temp=[x,y]
     return temp
 def function(vector):
-    x1=vector[0]
-    x2=vector[1]
-    Z=math.pow(x1,2)+(2*math.pow(x2,2))-(0.3*(math.cos(3*math.pi*x1)))-(0.4*math.cos(4*math.pi*x2))+0.7
+    sumterm=0
+    dimension=2
+    for i in vector:
+        sumterm+=i*i
+    sumterm=-0.2*math.sqrt(sumterm/dimension)
+    costerm=0
+    for i in vector:
+        costerm+=math.cos(2*math.pi*i)
+    costerm=costerm/dimension
+    Z=-20*math.exp(sumterm)-math.exp(costerm)+20+math.exp(1)
     return Z 
 def globalevaluate(particle):
      minvalue=particle[0][3]
@@ -88,7 +94,7 @@ def evallocal(particle):
             i[3]=tempvalue
             temparray=copy.deepcopy(i[0])
             i[4]=temparray
-            
+#先假設維度是2
 for i in range(500):
     if(i==0):
         particle=select(10,Ld,Ud,vmax,vmin)
